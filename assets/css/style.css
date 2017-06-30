@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  font-family: monospace;
+  background-color: white;
+  width: 100%;
+}
+
+#title {
+  width: 100%;
+  font-size: 36px;
+  padding: 30px;
+  border: 2px solid black;
+  margin-bottom: 30%;
+  background-color: tomato;
+  color: #dddddd;
+}
+
+#outline-box {
+  margin: auto;
+  padding: 10px;
+  width: 550px;
+  height: 100vh;
+  border: 2px solid black;
+  background-color: powderblue;
+}
+
+#main-content {
+
+  position: relative;
+}
+
+#inputAnswer {
+  margin: auto;
+  padding: 100px;
+  background-color: white;
+  width: 100%;
+  border: 4px solid black;
+  margin-bottom: 2%;
+}
+
+#keyboard {
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  width: 100%;
+  border: 2px solid black;
+  margin-bottom: 30%;
+}
+
+button {
+  padding: 10px;
+}
+
+#helperBox {
+  margin: auto;
+  padding: 30px;
+  background-color: white;
+  width: 100%;
+  border: 2px solid black;
+  background-color: tomato;
+  color: #dddddd;
+}

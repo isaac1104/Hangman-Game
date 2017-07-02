@@ -1,55 +1,44 @@
-//Generate random answers
-var ranBands = ["muse", "systemofadown", "metallica", "acdc", "gunsnroses", "greenday", "redhotchilipeppers", "oasis"];
+var answerScreen = document.getElementById("inputAnswer");
 
-var ranAnswer = ranBands[Math.floor(Math.random() * ranBands.length)];
+//Word pool//
+var ranBands = ["muse", "systemofadown", "metallica", "acdc", "gunsnroses", "greenday", "redhotchilipeppers", "oasis", "beatles", "slayers", "megadeath"];
 
+//Generate random words from the ranBands array//
+var generateRandom = Math.floor(Math.random() * ranBands.length);
+
+//Answer generated randomly from the ranBands array//
+var ranAnswer = ranBands[generateRandom].split("");
 console.log(ranAnswer);
 
+//Current answer the user has to guess//
+var currentAnswer = [];
 
-//Count number of characters in the answer without spaces
-var charCount = ranAnswer.split(" ").join("").length;
+var underscores = [];
 
-console.log(charCount);
-
-
-//Display the underscores into the #inputAnswer DIV
-window.onload = function displayUnderscore() {
-  document.getElementById("inputAnswer").innerHTML = underscores;
-
-  //Set total number of guesses remaining
-  var guesses = 10;
-
-  document.getElementById("guess").innerHTML = "Number of Guesses Remaining: " + guesses;
-}
-
-
-//Store correct letters
-var underscores = " ";
-
-
-//Create & match the numbers of underscores according to the length of the randomly generated answers
-function createUnderscore() {
-  for (var i = 0; i < charCount; i++) {
-    underscores += "_ ";
-  }
-}
-createUnderscore();
-
-console.log(underscores);
-
-//Replace underscores if letters are guessed correctly
-function replaceUnderscore() {
-  if (ranAnswer.indexOf() !== -1) {
-    for (i = 0; i < ranAnswer.length; i++) {
-      underscores = underscores.replace("_ ", ranAnswer.charAt(i));
+//Display randomly generated answers and show them as underscores//
+function displayUnderscore () {
+  answerScreen.innerHTML = "";
+  for (var i = 0; i < ranAnswer.length; i++) {
+    if (currentAnswer.indexOf() === -1) {
+      answerScreen.innerHTML = underscores.join(" ");
+    } else if (currentAnswer.indexOf() === 0){
+      answerScreen.innerHTML = answerScreen.innerHTML + currentAnswer[i];
     }
   }
 }
-replaceUnderscore();
+displayUnderscore();
+console.log(underscores);
 
-
-//User clicks on alphabet buttons to guess the answer
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-  'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-  't', 'u', 'v', 'w', 'x', 'y', 'z'
-];
+//User types keyboard to guess the answer//
+document.onkeypress = function(event) {
+  event = event || window.event;
+  var charCode = event.keyCode || event.which;
+  var charStr = String.fromCharCode(charCode);
+  for (var i = 0; i < ranAnswer.length; i++) {
+    if (ranAnswer[i] === charStr) {
+      ranAnswer[i] = "";
+      underscores[i] = charStr;
+      displayUnderscore();
+    }
+  }
+};

@@ -25,11 +25,19 @@ function displayUnderscore() {
 displayUnderscore();
 
 //Display total number of guesses left and letters already used//
-var guesses = 10;
+var guesses = 15;
 var usedLetters = [];
 
 function displayGuesses() {
-
+  //Player wins if all the letters are guessed correctly//
+  if (ranAnswer.toString() === currentAnswer.toString()) {
+    alert("You are correct! The answer is: " + ranAnswer.join("") + ". " + "Great Job!");
+    location.reload();
+    //Player loses if the number of guesses becomes 0//
+  } else if (guesses === 0) {
+    alert("You Lost! The answer is: " + ranAnswer.join("") + ". " + "Better luck next time!");
+    location.reload();
+  }
   document.getElementById("guess").innerHTML = "Total Number of Guesses Left: " + guesses;
   document.getElementById("lettersUsed").innerHTML = "Letters used: " + usedLetters;
 }
@@ -42,22 +50,17 @@ document.onkeypress = function(event) {
   var charStr = String.fromCharCode(charCode);
   guesses--;
   displayGuesses();
-
-  //Player wins if the currentAnswer array gets filled out completely//
-  if (ranAnswer === currentAnswer) {
-    alert("You are correct! The answer is: " + ranAnswer.join("") + ". " + "Great Job!");
-    location.reload();
-    
-    //Player loses if the number of guesses becomes 0//
-  } else if (guesses === 0) {
-    alert("You Lost! The answer is: " + ranAnswer.join("") + ". " + "Better luck next time!");
-    location.reload();
+  if (charStr && usedLetters.indexOf(i) === -1) {
+    usedLetters[i] = charStr;
+    usedLetters.push(charStr);
+    document.getElementById("lettersUsed").innerHTML = "Letters used: " + " " + usedLetters + " ";
+    console.log(usedLetters);
   }
   for (var i = 0; i < ranAnswer.length; i++) {
     if (ranAnswer[i] === charStr) {
       currentAnswer[i] = charStr;
-      displayUnderscore();
       console.log(currentAnswer);
+      displayUnderscore();
     }
   }
 };

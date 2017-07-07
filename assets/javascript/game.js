@@ -48,9 +48,8 @@ document.onkeypress = function(event) {
   event = event || window.event;
   var charCode = event.keyCode || event.which;
   var charStr = String.fromCharCode(charCode);
-  guesses--;
-  displayGuesses();
-  if (charStr && usedLetters.indexOf(i) === -1) {
+  if (charStr && usedLetters.indexOf(charStr) === -1) {
+    guesses--;
     usedLetters[i] = charStr;
     usedLetters.push(charStr);
     document.getElementById("lettersUsed").innerHTML = "Letters used: " + " " + usedLetters + " ";
@@ -59,8 +58,8 @@ document.onkeypress = function(event) {
   for (var i = 0; i < ranAnswer.length; i++) {
     if (ranAnswer[i] === charStr) {
       currentAnswer[i] = charStr;
-      console.log(currentAnswer);
       displayUnderscore();
     }
   }
+  displayGuesses();
 };

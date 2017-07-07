@@ -47,7 +47,7 @@ body {
   animation: flicker1 0.8s infinite;
 }
 
-/*@keyframes flicker1 { to { opacity: 0.5; } }*/
+@keyframes flicker1 { to { opacity: 0.5; } }
 
 #keyboard {
   margin: auto;
